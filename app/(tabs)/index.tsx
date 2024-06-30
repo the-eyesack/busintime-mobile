@@ -1,17 +1,30 @@
 import { Image, StyleSheet, Platform } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 import BusSearch from '@/components/BusSearch';
+import {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeScreen() {
+    const [name, setName] = useState('');
+  useState(async () => {
+    try {
+      const value = await AsyncStorage.getItem('username');
+      if (value !== null) {
+        setName(value)
+      }
+    } catch (e) {
+      console.log('error reading username')
+    }
+  })
   return (
       <ThemedView>
       <ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
-      <BusSearch/>
+        <ThemedText>Good morning, {name}</ThemedText>
+
+        <BusSearch/>
       </ThemedView>
   );
 }
@@ -30,3 +43,4 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
+
