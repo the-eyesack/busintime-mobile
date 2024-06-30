@@ -17,8 +17,8 @@ export default function StopByRoute() {
 	const [buses, setBuses] = useState([])
 	useEffect(() => {
 		console.log(route, id)
-		fetch(`http://localhost:5000/${route}/${id}`) // local dev
-		// fetch(`https://coral-app-o8edf.ondigitalocean.app/${route}/${id}`)
+		// fetch(`http://localhost:5000/${route}/${id}`) // local dev
+		fetch(`https://coral-app-o8edf.ondigitalocean.app/${route}/${id}`)
 			.then(res => res.json())
 			.then(data => {
 				console.log(data)
@@ -36,7 +36,7 @@ export default function StopByRoute() {
 				<ThemedText>{stopName}</ThemedText>
 			</View>
 
-			<ThemedText style={styles.stopCode}>Stop Code <span style={styles.id}>{id}</span></ThemedText>
+			<ThemedText style={styles.stopCode}>Stop Code <ThemedText style={styles.id}>{id}</ThemedText></ThemedText>
 			<ScrollView style={styles.flex}>
 				{loading ? <Loading/> : buses.map((bus, i) => {
 					if(moment(bus['arrival_time']).format() !== 'Invalid date') return (
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 	header: {
 		fontSize: 48,
 		fontWeight: 'bold',
-		padding: 4
+		padding: 4,
 	},
 	stopCode: {
 		marginTop: 10

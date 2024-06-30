@@ -21,6 +21,7 @@ export default function HomeScreen() {
   })
   return (
       <ThemedView>
+
       <ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
         <ThemedText>Good morning, {name}</ThemedText>
 
