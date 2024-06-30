@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Platform, TextInput, useColorScheme, Button, View} from 'react-native';
+import {Image, StyleSheet, Platform, TextInput, useColorScheme, Button, View, Pressable} from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -7,9 +7,10 @@ import BusSearch from '@/components/BusSearch';
 import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Link} from 'expo-router';
+import {Colors} from '@/constants/Colors';
 
 export default function HomeScreen() {
-	const [name, setName] = useState('Enter name');
+	const [name, setName] = useState('');
 	let colorScheme = useColorScheme()
 
 	async function handleNameSubmit() {
@@ -36,29 +37,24 @@ export default function HomeScreen() {
 			<ThemedText style={styles.titleContainer}>Settings</ThemedText>
 			<View style={styles.flexbox}>
 				<ThemedText>Set Username:</ThemedText>
-				<TextInput style={colorScheme === 'dark' ? styles.darkModeText : styles.lightSearchbox} placeholder={name} placeholderTextColor={colorScheme === 'dark' ? "#fff" : "#000"} onChangeText={setName} value={name}/>
-				<Button title={"Submit"} onPress={()=>handleNameSubmit()}/>
+				<TextInput style={colorScheme === 'dark' ? styles.darkModeText : styles.lightSearchbox} placeholder={name == '' ? 'Enter name' : name} placeholderTextColor={colorScheme === 'dark' ? "#fff" : "#000"} onChangeText={setName} value={name}/>
+				<Pressable style={styles.button} onPress={()=>handleNameSubmit()}>
+					<ThemedText>Submit</ThemedText>
+				</Pressable>
 			</View>
 			<ThemedText>Version 0.0.1 developed by <Link href={'https://github.com/the-eyesack'}>@the-eyesack</Link></ThemedText>
 		</ThemedView>
 	);
 }
 const styles = StyleSheet.create({
-	titleContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		gap: 8,
-		fontSize: 24,
-		textAlign: 'center',
-		marginTop: 100
-	},
 	button: {
-		color: 'white',
-		borderWidth: 1,
-		borderRadius: 8,
-		borderColor: 'white',
-		padding: 2,
-		margin: 10
+		flex: 1,
+		borderWidth: 2,
+		borderRadius: 4,
+		backgroundColor: Colors.pink,
+		textAlign: 'center',
+		textAlignVertical: 'center',
+		alignItems: 'center'
 	},
 	darkModeText: {
 		color: "white"

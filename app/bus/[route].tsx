@@ -1,10 +1,12 @@
 import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
-import {useLocalSearchParams} from 'expo-router';
+import {Stack, useLocalSearchParams} from 'expo-router';
 import {useEffect, useState} from 'react';
 import {Button, Pressable, StyleSheet, View} from 'react-native';
 import StopDisplayList from '@/app/bus/StopDisplayList';
 import Loading from '@/components/Loading';
+import {Colors} from '@/constants/Colors';
+
 
 export default function Route() {
 	const route = useLocalSearchParams()
@@ -28,7 +30,10 @@ export default function Route() {
 			.then(res => res.json())
 			.then(data => {
 				// console.log(data)
-				if(data.error) setErrorMessage(data.error)
+				if(data.error) {
+					setErrorMessage(data.error)
+
+				}
 				setCurrentStops(data.currentStops)
 				// @ts-ignore
 				setStops([data.directions[0].stops.reverse(), data.directions[1].stops.reverse()])
@@ -41,7 +46,6 @@ export default function Route() {
 			.then(() => setLoading(false))
 			.catch(err => {
 				setError(true);
-				setLoading(false);
 			})
 	}, []);
 
@@ -63,27 +67,47 @@ export default function Route() {
 		changeActivated(true)
 	}, []);
 
+	// @ts-ignore
 	return (
 		<ThemedView>
-
-		<ThemedText>{Object.values(route)}</ThemedText>
+		<Stack.Screen
+			options={{
+				title: Object.values(route).toString(),
+			}}
+		/>
 			{/*select direction buttons*/}
-			<Pressable style={activatedDestination ?  '' : styles.highlight} onPress={()=>changeActivated(true)}><ThemedText>{destinations[0]}</ThemedText></Pressable>
-			<Pressable style={activatedDestination ? styles.highlight : ''} onPress={()=>changeActivated(false)}><ThemedText>{destinations[1]}</ThemedText></Pressable>
-
-			{ loading ? <Loading/> : <StopDisplayList key={activatedDestination} destination={destinations[activatedDestination]}
-													  dir={stops[activatedDestination]} currentStops={currentStops} i={activatedDestination}
-													  route={route.route} ids={ids}/>}
+			<View style={styles.directionContainer}>
+				<Pressable style={activatedDestination ?  '' : styles.highlight} onPress={()=>changeActivated(true)}><ThemedText style={styles.routeName}>{destinations[0]}</ThemedText></Pressable>
+				<Pressable style={activatedDestination ? styles.highlight : ''} onPress={()=>changeActivated(false)}><ThemedText style={styles.routeName}>{destinations[1]}</ThemedText></Pressable>
+			</View>
+			{ error ? <ThemedText>{errorMessage}</ThemedText> : loading ? <Loading/> : <StopDisplayList key={activatedDestination} destination={destinations[activatedDestination]}
+																										dir={stops[activatedDestination]} currentStops={currentStops} i={activatedDestination}
+																										route={route.route} ids={ids}/>}
 
 		</ThemedView>
 	);
 }
 
 const styles = StyleSheet.create({
+	directionContainer: {
+		borderBottomWidth: 2,
+		borderColor: borderColor(),
+
+	},
+	routeName: {
+		fontWeight: 'bold',
+		textAlign: 'center'
+	},
 	highlight: {
-		backgroundColor: "#ff0000",
+		backgroundColor: Colors.highlight,
 	},
 	text: {
 		color: "#fff"
 	}
 })
+
+function borderColor() {
+	if (Colors.colorScheme == 'dark') {
+		return Colors.white;
+	} else return Colors.black;
+}

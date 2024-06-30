@@ -6,6 +6,7 @@ import ScrollView = Animated.ScrollView;
 import Loading from '@/components/Loading';
 import moment from 'moment';
 import {ThemedView} from '@/components/ThemedView';
+import {Colors} from '@/constants/Colors';
 
 export default function StopByRoute() {
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	id: {
-		color: "#ff0000"
+		color: Colors.highlight
 	},
 	timeBox: {
 		textAlign: 'center',
