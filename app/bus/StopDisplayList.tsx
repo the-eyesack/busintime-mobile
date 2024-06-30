@@ -6,7 +6,7 @@ import {ThemedView} from '@/components/ThemedView';
 export default function StopDisplayList(props: { dir: string[]; currentStops: { [x: string]: string | string[]; }; i: string | number; route: any; ids: { [x: string]: any[]; }; }) {
 	return (
 		<ScrollView>
-			{props.dir.reverse().map((stop : string, index : number) => {
+			{props.dir.map((stop : string, index : number) => {
 				if (props.currentStops[props.i].includes(stop)) {
 					return <Link key={index} style={styles.highlight} href={{
 						pathname: `/stops/[stop]/[route]`,

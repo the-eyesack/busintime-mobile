@@ -31,7 +31,11 @@ export default function StopByRoute() {
 
 	return (
 		<ThemedView>
-			<ThemedText style={styles.header}>{route}</ThemedText>
+			<View style={styles.flexRow}>
+				<ThemedText style={styles.header}>{route.toString()}</ThemedText>
+				<ThemedText>{stopName}</ThemedText>
+			</View>
+
 			<ThemedText style={styles.stopCode}>Stop Code <span style={styles.id}>{id}</span></ThemedText>
 			<ScrollView style={styles.flex}>
 				{loading ? <Loading/> : buses.map((bus, i) => {
@@ -62,5 +66,11 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'column',
 		gap: 10
+	},
+	flexRow: {
+		display: 'flex',
+		flexDirection: 'row',
+		gap: 10,
+		verticalAlign: 'bottom'
 	}
 })
