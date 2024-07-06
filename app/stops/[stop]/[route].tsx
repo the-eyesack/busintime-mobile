@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
 		fontSize: 48,
 		fontWeight: 'bold',
 		padding: 4,
+		marginTop: 10,
 	},
 	stopCode: {
 		marginTop: 10

@@ -13,14 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hackclub.busintime"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.theeyesack.busintimemobile"
+      "package": "com.theeyesack.busintime"
     },
     "web": {
       "bundler": "metro",
