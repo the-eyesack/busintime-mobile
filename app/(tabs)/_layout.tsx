@@ -22,6 +22,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='bus' color={color} />
           ),
+
         }}
       />
         <Tabs.Screen

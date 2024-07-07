@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Platform, ScrollView} from 'react-native';
+import {Image, StyleSheet, Platform, ScrollView, Keyboard,  TouchableWithoutFeedback } from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -7,6 +7,8 @@ import BusSearch from '@/components/BusSearch';
 import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
+import DismissKeyboard from '@/components/DismissKeyboard';
+
 
 export default function HomeScreen() {
   const [name, setName] = useState('');
@@ -23,6 +25,7 @@ export default function HomeScreen() {
     }
 
 
+
   useState(async () => {
     try {
       const value = await AsyncStorage.getItem('username');
@@ -34,13 +37,14 @@ export default function HomeScreen() {
     }
   })
   return (
+      <DismissKeyboard>
       <ThemedView style={{flex:1}}>
         <ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
           <ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
           <ThemedText >Search for Bus</ThemedText>
-
           <BusSearch/>
       </ThemedView>
+      </DismissKeyboard>
   );
 }
 

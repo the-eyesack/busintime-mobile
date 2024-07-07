@@ -8,10 +8,13 @@ import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Link} from 'expo-router';
 import {Colors} from '@/constants/Colors';
+import json from '@/app.json';
+import DismissKeyboard from '@/components/DismissKeyboard';
 
 export default function HomeScreen() {
 	const [name, setName] = useState('');
 	let colorScheme = useColorScheme()
+	const version = json.expo.version
 
 	async function handleNameSubmit() {
 		try {
@@ -33,6 +36,7 @@ export default function HomeScreen() {
 	})
 
 	return (
+		<DismissKeyboard>
 		<ThemedView>
 			<ThemedText style={styles.titleContainer}>Settings</ThemedText>
 			<View style={styles.flexbox}>
@@ -42,8 +46,9 @@ export default function HomeScreen() {
 					<ThemedText>Submit</ThemedText>
 				</Pressable>
 			</View>
-			<ThemedText>Version 0.0.1 developed by <Link href={'https://github.com/the-eyesack'}>@the-eyesack</Link></ThemedText>
+			<ThemedText>Version {version} developed by <Link href={'https://github.com/the-eyesack'}>@the-eyesack</Link></ThemedText>
 		</ThemedView>
+		</DismissKeyboard>
 	);
 }
 const styles = StyleSheet.create({

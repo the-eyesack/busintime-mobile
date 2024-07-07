@@ -33,6 +33,7 @@ export default function StopByRoute() {
 	return (
 		<ThemedView>
 			<View style={styles.flexRow}>
+				{/*@ts-ignore*/}
 				<ThemedText style={styles.header}>{route.toString()}</ThemedText>
 				<ThemedText>{stopName}</ThemedText>
 			</View>
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
 		fontSize: 48,
 		fontWeight: 'bold',
 		padding: 4,
-		marginTop: 10,
 	},
 	stopCode: {
 		marginTop: 10

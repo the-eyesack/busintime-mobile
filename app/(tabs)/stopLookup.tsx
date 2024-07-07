@@ -9,6 +9,7 @@ import {useState} from 'react';
 import moment from 'moment/moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '@/constants/Colors';
+import DismissKeyboard from '@/components/DismissKeyboard';
 
 export default function StopLookup() {
 	const [name, setName] = useState('');
@@ -37,12 +38,14 @@ export default function StopLookup() {
 	})
 
 	return (
+		<DismissKeyboard>
 		<ThemedView>
 			<ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
 			<ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
 			<ThemedText >Search for a Stop</ThemedText>
 			<StopSearch/>
 		</ThemedView>
+		</DismissKeyboard>
 	);
 }
 
