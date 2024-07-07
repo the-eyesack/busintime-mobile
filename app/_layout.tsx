@@ -35,7 +35,9 @@ export default function RootLayout() {
           title: "Home"
         }} />
         <Stack.Screen name="+not-found" />
-        <Stack.Screen name={"stops/[stop]/[route]"} options={{ headerShown: false }} />
+        <Stack.Screen name={"stops/[stop]/[route]"} options={{title: '' }} />
+        <Stack.Screen name={"bus/[route]"} options={{ }} />
+
       </Stack>
     </ThemeProvider>
   );

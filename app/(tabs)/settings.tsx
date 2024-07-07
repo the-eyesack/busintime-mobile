@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Platform, TextInput, useColorScheme, Button, View, Pressable} from 'react-native';
+import {Image, StyleSheet, Platform, TextInput, useColorScheme, Alert, View, Pressable} from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -19,9 +19,9 @@ export default function HomeScreen() {
 	async function handleNameSubmit() {
 		try {
 			await AsyncStorage.setItem('username', name)
-			console.log(`successfuly set username to ${name}`)
+			Alert.alert(`Successfully set username to ${name}.`)
 		} catch (e) {
-			console.log("error saving username")
+			Alert.alert("There was an error saving your username. Please try again.")
 		}
 	}
 	useState(async () => {

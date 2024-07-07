@@ -37,6 +37,7 @@ export default function Route() {
 				setCurrentStops(data.currentStops)
 				// @ts-ignore
 				setStops([data.directions[0].stops.reverse(), data.directions[1].stops.reverse()])
+				// @ts-ignore
 				setIds([data.directions[0].ids, data.directions[1].ids])
 
 				setDestinations([data.directions[0].destination, data.directions[1].destination])
@@ -68,6 +69,7 @@ export default function Route() {
 	}, []);
 
 	// @ts-ignore
+	// @ts-ignore
 	return (
 		<ThemedView>
 		<Stack.Screen
@@ -77,11 +79,16 @@ export default function Route() {
 		/>
 			{/*select direction buttons*/}
 			<View style={styles.directionContainer}>
+				{/*@ts-ignore*/}
 				<Pressable style={activatedDestination ?  '' : styles.highlight} onPress={()=>changeActivated(true)}><ThemedText style={styles.routeName}>{destinations[0]}</ThemedText></Pressable>
+				{/*@ts-ignore*/}
 				<Pressable style={activatedDestination ? styles.highlight : ''} onPress={()=>changeActivated(false)}><ThemedText style={styles.routeName}>{destinations[1]}</ThemedText></Pressable>
 			</View>
+			{/*@ts-ignore*/}
+
 			{ error ? <ThemedText>{errorMessage}</ThemedText> : loading ? <Loading/> : <StopDisplayList key={activatedDestination} destination={destinations[activatedDestination]}
 																										dir={stops[activatedDestination]} currentStops={currentStops} i={activatedDestination}
+																										// @ts-ignore
 																										route={route.route} ids={ids}/>}
 
 		</ThemedView>

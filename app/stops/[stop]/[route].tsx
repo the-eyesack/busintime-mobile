@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import {useLocalSearchParams} from 'expo-router';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Stack, useLocalSearchParams} from 'expo-router';
+import {Animated, SafeAreaView, StyleSheet, View} from 'react-native';
 import {ThemedText} from '@/components/ThemedText';
 import ScrollView = Animated.ScrollView;
 import Loading from '@/components/Loading';
@@ -13,6 +13,7 @@ export default function StopByRoute() {
 	const {route, stop } = useLocalSearchParams()
 
 	const [loading, setLoading] = useState<boolean>(true)
+	// @ts-ignore
 	const id = stop.replace('MTA_', '')
 	const [stopName, setStopName] = useState<string>()
 	const [buses, setBuses] = useState([])
@@ -32,10 +33,10 @@ export default function StopByRoute() {
 
 	return (
 		<ThemedView>
-			<View style={styles.flexRow}>
+			<View>
 				{/*@ts-ignore*/}
-				<ThemedText style={styles.header}>{route.toString()}</ThemedText>
-				<ThemedText>{stopName}</ThemedText>
+				<ThemedText style={styles.routeName}>{route.toString()}</ThemedText>
+				{/*<ThemedText>{stopName}</ThemedText>*/}
 			</View>
 
 			<ThemedText style={styles.stopCode}>Stop Code <ThemedText style={styles.id}>{id}</ThemedText></ThemedText>
@@ -50,10 +51,11 @@ export default function StopByRoute() {
 }
 
 const styles = StyleSheet.create({
-	header: {
+	routeName: {
 		fontSize: 48,
 		fontWeight: 'bold',
 		padding: 4,
+		lineHeight: 50
 	},
 	stopCode: {
 		marginTop: 10
@@ -67,12 +69,13 @@ const styles = StyleSheet.create({
 	flex: {
 		display: 'flex',
 		flexDirection: 'column',
-		gap: 10
+		gap: 10,
 	},
 	flexRow: {
-		display: 'flex',
 		flexDirection: 'row',
 		gap: 10,
-		verticalAlign: 'bottom'
-	}
+		verticalAlign: 'bottom',
+		marginTop: 20,
+		borderWidth: 1,
+	},
 })
