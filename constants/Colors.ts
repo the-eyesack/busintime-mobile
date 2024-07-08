@@ -6,8 +6,13 @@ import {useColorScheme} from 'react-native';
 
 const tintColorLight = '#B6465F';
 const tintColorDark = '#B6465F';
+const textColor = ()=> {if (useColorScheme() == 'dark') {
+  return Colors.white;
+} else return Colors.black;}
+
 
 export const Colors = {
+  textColor,
   light: {
     text: '#2E2836',
     background: '#fff',

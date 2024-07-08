@@ -13,6 +13,7 @@ export default function StopByRoute() {
 	const { stop } = useLocalSearchParams()
 
 	const [loading, setLoading] = useState<boolean>(true)
+	// @ts-ignore
 	const id = stop.replace('MTA_', '')
 	const [stopName, setStopName] = useState<string>()
 	const [buses, setBuses] = useState([])

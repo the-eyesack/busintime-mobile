@@ -4,12 +4,13 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-import StopSearch from '@/components/StopSearch';
+import StopSearch from '@/components/stops/StopSearch';
 import {useState} from 'react';
 import moment from 'moment/moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '@/constants/Colors';
 import DismissKeyboard from '@/components/DismissKeyboard';
+import NearbyStops from '@/components/stops/NearbyStops';
 
 export default function StopLookup() {
 	const [name, setName] = useState('');
@@ -44,6 +45,7 @@ export default function StopLookup() {
 			<ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
 			<ThemedText >Search for a Stop</ThemedText>
 			<StopSearch/>
+			<NearbyStops/>
 		</ThemedView>
 		</DismissKeyboard>
 	);
