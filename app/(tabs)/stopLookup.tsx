@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import {Image, StyleSheet, Platform, ScrollView} from 'react-native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -40,13 +40,15 @@ export default function StopLookup() {
 
 	return (
 		<DismissKeyboard>
-		<ThemedView>
+		<ScrollView contentContainerStyle={{flexGrow: 1}}>
+			<ThemedView>
 			<ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
 			<ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
 			<ThemedText >Search for a Stop</ThemedText>
 			<StopSearch/>
 			<NearbyStops/>
-		</ThemedView>
+			</ThemedView>
+		</ScrollView>
 		</DismissKeyboard>
 	);
 }

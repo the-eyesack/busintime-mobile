@@ -6,7 +6,7 @@ import {Colors} from '@/constants/Colors';
 
 export default function StopDisplayList(props: { dir: string[]; currentStops: { [x: string]: string | string[]; }; i: string | number; route: any; ids: { [x: string]: any[]; }; }) {
 	return (
-		<View>
+		<ThemedView>
 		<ScrollView
 			contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}
 		>
@@ -44,7 +44,7 @@ export default function StopDisplayList(props: { dir: string[]; currentStops: { 
 				<View style={styles.arrow}/>
 			</View>
 		</ScrollView>
-		</View>
+		</ThemedView>
 	)
 }
 
