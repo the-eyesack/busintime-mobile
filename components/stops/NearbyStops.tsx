@@ -2,7 +2,7 @@ import {ThemedText} from '@/components/ThemedText';
 import * as Location from 'expo-location';
 import {useEffect, useState} from 'react';
 import {ThemedView} from '@/components/ThemedView';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Button, ScrollView, StyleSheet, View} from 'react-native';
 import {Colors} from '@/constants/Colors';
 import Loading from '@/components/Loading';
 import NearbyStopsList from '@/components/NearbyStopsList';
@@ -14,11 +14,9 @@ export default function NearbyStops() {
 	const [stops, setStops] = useState([])
 	const [loading, setLoading] = useState(true)
 
-
-
-	useEffect(() => {
+	function refresh() {
 		(async () => {
-
+			setLoading(true)
 			let { status } = await Location.requestForegroundPermissionsAsync();
 			if (status !== 'granted') {
 				// @ts-ignore
@@ -31,11 +29,18 @@ export default function NearbyStops() {
 			setLongitude(location.coords.longitude);
 			console.log(location.coords.latitude, location.coords.longitude)
 			setLoading(false)
-		})();
+		})()
+	}
+
+	useEffect(() => {
+		refresh()
+		;
 	}, []);
 
 	return (
 		<ThemedView style={styles.container}>
+			<ThemedText style={styles.title}>Nearby Stops</ThemedText>
+			<Button title={'Refresh'} onPress={refresh}/>
 			{/*@ts-ignore*/}
 			{loading ? <Loading/> : <NearbyStopsList longitude={longitude} latitude={latitude}/>}
 		</ThemedView>
@@ -50,4 +55,9 @@ const styles = StyleSheet.create({
 		padding: 20,
 		flexDirection: 'column'
 	},
+	title: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		marginBottom: 10
+	}
 });

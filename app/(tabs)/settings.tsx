@@ -46,7 +46,10 @@ export default function HomeScreen() {
 					<ThemedText>Submit</ThemedText>
 				</Pressable>
 			</View>
-			<ThemedText>Version {version} developed by <Link href={'https://github.com/the-eyesack'}>@the-eyesack</Link></ThemedText>
+			<View style={{flex: 1, flexWrap: 'wrap', position: 'absolute', left: 0, bottom: 0, fontSize: 15}}>
+				<ThemedText>Version {version}</ThemedText>
+				<Link href={'https://github.com/the-eyesack'}><ThemedText>Developed and maintained by @the-eyesack</ThemedText></Link>
+			</View>
 		</ThemedView>
 		</DismissKeyboard>
 	);
@@ -59,7 +62,8 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.pink,
 		textAlign: 'center',
 		textAlignVertical: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		marginHorizontal: 10
 	},
 	darkModeText: {
 		color: "white"
@@ -70,7 +74,9 @@ const styles = StyleSheet.create({
 	flexbox: {
 		display: "flex",
 		flexDirection: "row",
-		gap: 10
+		gap: 10,
+		justifyContent: 'center',
+		textAlign: 'center'
 	},
 	lightSearchbox: {
 		borderWidth: 1,

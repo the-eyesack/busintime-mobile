@@ -17,8 +17,9 @@ export default function StopByRoute() {
 	const id = stop.replace('MTA_', '')
 	const [stopName, setStopName] = useState<string>()
 	const [buses, setBuses] = useState([])
+	const [routes, setRoutes] = useState<String[]>([])
 	useEffect(() => {
-		console.log(id)
+		// console.log(id)
 		// fetch(`http://localhost:5000/stops/${id}`) // local dev
 			fetch(`https://coral-app-o8edf.ondigitalocean.app/stops/${id}`)
 			.then(res => res.json())
@@ -26,9 +27,10 @@ export default function StopByRoute() {
 				console.log(data)
 				setStopName(data['stop_name'])
 				setBuses(data['buses'])
+				setLoading(false)
 			})
-			.then(() => setLoading(false))
 			.catch(err => console.log(err))
+
 	}, []);
 
 	return (
@@ -40,6 +42,11 @@ export default function StopByRoute() {
 			/>
 			<ThemedText style={styles.header}>{stopName}</ThemedText>
 			<ThemedText style={styles.stopCode}>Stop Code <ThemedText style={styles.id}>{id}</ThemedText></ThemedText>
+			{loading? <Loading/> : routes.map((route) => (
+				<View>
+					<ThemedText>{route}</ThemedText>
+				</View>
+			))}
 			<ScrollView style={styles.flex}>
 				{loading ? <Loading/> : buses.map((bus, i) => {
 					if(moment(bus['arrival_time']).format() !== 'Invalid date') return (

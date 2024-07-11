@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		gap: 5
 	},
+
 	searchbox: {
 		borderWidth: 2,
 		padding: 10,
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.pink,
 		textAlign: 'center',
 		textAlignVertical: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		overflow: 'hidden'
 	},
 
 })

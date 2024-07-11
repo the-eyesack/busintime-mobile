@@ -86,7 +86,10 @@ export default function Route() {
 			</View>
 			{/*@ts-ignore*/}
 
-			{ error ? <ThemedText>{errorMessage}</ThemedText> : loading ? <Loading/> : <StopDisplayList key={activatedDestination} destination={destinations[activatedDestination]}
+			{ error ? <View><ThemedText>{errorMessage}</ThemedText>
+				<ThemedText style={{marginTop: 50}}>Tip: When searching for an SBS route, attach SBS or "+" at the end of the route name. Ex. "Q44 SBS" or "Q44+"
+			</ThemedText>
+			</View> : loading ? <Loading/> : <StopDisplayList key={activatedDestination} destination={destinations[activatedDestination]}
 																										dir={stops[activatedDestination]} currentStops={currentStops} i={activatedDestination}
 																										// @ts-ignore
 																										route={route.route} ids={ids}/>}

@@ -41,7 +41,7 @@ export default function HomeScreen() {
       <ThemedView style={{flex:1}}>
         <ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
           <ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
-          <ThemedText >Search for Bus</ThemedText>
+          <ThemedText style={styles.title}>Search for Bus</ThemedText>
           <BusSearch/>
       </ThemedView>
       </DismissKeyboard>
@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
       textAlign: 'center',
       marginTop: 100
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center'
   },
   greeting: {
     fontWeight: 'bold',

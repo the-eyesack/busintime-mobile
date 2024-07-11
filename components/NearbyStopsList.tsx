@@ -2,6 +2,8 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {ThemedText} from '@/components/ThemedText';
 import {Colors} from '@/constants/Colors';
 import {useEffect, useState} from 'react';
+import {Link} from 'expo-router';
+import {ThemedView} from '@/components/ThemedView';
 
 export default function NearbyStopsList(props: { longitude: number; latitude: number; }) {
 	const key = process.env.EXPO_PUBLIC_MTA_KEY;
@@ -33,19 +35,19 @@ export default function NearbyStopsList(props: { longitude: number; latitude: nu
 					let distance = haversine(props.latitude, props.longitude, stop['lat'], stop['lon'])
 					packet.push({name: stop['name'], distance: distance, code: stop['code'], routes: routes})
 				})
-				console.log(json['data']['stops'])
-				setStops(packet)
+				// console.log(json['data']['stops'])
+				setStops(packet.sort((a: any, b: any) => a['distance'] - b['distance']))
 				setLoading(false)
 			})
 	}, []);
 
 	return (
-		<ScrollView>
-			<ThemedText>Nearby Stops</ThemedText>
-				{stops.slice(0,5).map((stop, i) => {
+		<ThemedView>
+				{stops.slice(0,10).map((stop, i) => {
 					return <View style={styles.infoContainer}>
-						<View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-							<ThemedText style={styles.name}>{stop['name']}</ThemedText>
+						<View style={{display: 'flex', flexDirection: 'row', gap: 10, flexWrap: 'wrap'}}>
+							<Link href={{pathname: `/stops/[stop]`,
+								params: {stop: stop['code']}}}><ThemedText style={styles.name}>{stop['name']}</ThemedText></Link>
 							<ThemedText>{stop['distance']}mi away</ThemedText>
 						</View>
 						<View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
@@ -56,7 +58,7 @@ export default function NearbyStopsList(props: { longitude: number; latitude: nu
 						<ThemedText>{stop['code']}</ThemedText>
 					</View>
 				})}
-		</ScrollView>
+		</ThemedView>
 	)
 }
 
@@ -70,12 +72,6 @@ const styles = StyleSheet.create({
 		padding: 2,
 		borderRadius: 10,
 		overflow: 'hidden',
-	},
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 20,
 	},
 	infoContainer: {
 		marginBottom: 20,

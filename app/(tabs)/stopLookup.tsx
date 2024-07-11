@@ -44,7 +44,7 @@ export default function StopLookup() {
 			<ThemedView>
 			<ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
 			<ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
-			<ThemedText >Search for a Stop</ThemedText>
+			<ThemedText style={styles.title}>Search for a Stop</ThemedText>
 			<StopSearch/>
 			<NearbyStops/>
 			</ThemedView>
@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		textAlign: 'center',
 		marginTop: 100
+	},
+	title: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		marginBottom: 10,
+		textAlign: 'center'
 	},
 	greeting: {
 		fontWeight: 'bold',

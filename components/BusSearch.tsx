@@ -20,7 +20,7 @@ export default function BusSearch() {
 		if (busName == "") {
 			return 'M1'
 		}
-		return busName.replace(' ', '').replace('SBS', '%2B').toUpperCase()
+		return busName.toUpperCase().replace(' ', '').replace('SBS', '+')
 	}
 	return (
 		<View style={styles.flex}>
@@ -55,7 +55,9 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.pink,
 		textAlign: 'center',
 		textAlignVertical: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		overflow: 'hidden'
+
 	},
 
 })
