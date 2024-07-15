@@ -56,6 +56,7 @@ export default function NearbyStopsList(props: { longitude: number; latitude: nu
 								return <ThemedText style={styles.busCircle}>{bus}</ThemedText>
 							})}</View>
 						<ThemedText>{stop['code']}</ThemedText>
+						<ThemedText>{props.latitude} {props.longitude}</ThemedText>
 					</View>
 				})}
 		</ThemedView>

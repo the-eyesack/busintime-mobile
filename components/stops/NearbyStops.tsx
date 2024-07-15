@@ -5,7 +5,7 @@ import {ThemedView} from '@/components/ThemedView';
 import {Button, ScrollView, StyleSheet, View} from 'react-native';
 import {Colors} from '@/constants/Colors';
 import Loading from '@/components/Loading';
-import NearbyStopsList from '@/components/NearbyStopsList';
+import NearbyStopsList from '@/components/stops/NearbyStopsList';
 
 export default function NearbyStops() {
 	const [errorMsg, setErrorMsg] = useState(null);
