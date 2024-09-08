@@ -44,9 +44,8 @@ export default function StopByRoute() {
 				{loading ? <Loading/> : buses.map((bus, i) => {
 					if(moment(bus['arrival_time']).format() !== 'Invalid date') return (
 						<View style={styles.timeContainer}>
-						<ThemedText key={i} style={styles.timeNumber}>{moment().to(bus['arrival_time']).replace('in ', '').replace(' minutes', '')}</ThemedText>
-						<ThemedText> minutes </ThemedText>
-						<ThemedText>({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>
+						<ThemedText key={i} id={'timeuntil'+i} style={styles.timeNumber}>{moment().to(bus['arrival_time']).replace('in ', '')}</ThemedText>
+						<ThemedText style={styles.time}>({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>
 						</View>
 
 					)})}
@@ -58,7 +57,9 @@ export default function StopByRoute() {
 const styles = StyleSheet.create({
 	timeContainer: {
 		display: 'flex',
-		flexDirection: 'row'
+		marginTop: 24,
+		flexDirection: 'row',
+
 	},
 	routeName: {
 		fontSize: 48,
@@ -73,9 +74,15 @@ const styles = StyleSheet.create({
 		color: Colors.highlight
 	},
 	timeNumber: {
-		textAlign: 'center',
 		fontSize: 32,
 		textAlignVertical: 'top',
+		paddingBottom: 6,
+		paddingLeft: 12,
+		width: 180
+	},
+	time: {
+		marginTop: 'auto',
+		paddingLeft: 6
 	},
 	flex: {
 		display: 'flex',

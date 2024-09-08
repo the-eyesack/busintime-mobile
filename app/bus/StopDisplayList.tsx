@@ -19,7 +19,7 @@ export default function StopDisplayList(props: { dir: string[]; currentStops: { 
 			<View style={styles.container}>
 				{props.dir.map((stop : string, index : number) => {
 					if (props.currentStops[props.i].includes(stop)) {
-						return <View style={styles.textContainer}>
+						return <View key={index} style={styles.textContainer}>
 							<Text style={styles.dotHighlight}/>
 							<Text style={styles.line}/>
 							<Link key={index} href={{

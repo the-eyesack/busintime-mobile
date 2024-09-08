@@ -26,9 +26,11 @@ export default function NearbyStopsList(props: { longitude: number; latitude: nu
 	}
 
 	useEffect(() => {
-		fetch(`https://bustime.mta.info/api/where/stops-for-location.json?key=${key}&lat=${props.latitude}&lon=${props.longitude}`)
-			.then((response) => response.json())
+		// fetch(`http://localhost:5000/nearby/${props.latitude.toString().replace('-', 'n').replace('.', 'd')}/${props.longitude.toString().replace('-', 'n').replace('.', 'd')}`)
+		fetch(`https://coral-app-o8edf.ondigitalocean.app/nearby/${props.latitude.toString().replace('-', 'n').replace('.', 'd')}/${props.longitude.toString().replace('-', 'n').replace('.', 'd')}`)
+	.then((response) => response.json())
 			.then((json) => {
+				// console.log(json)
 				let packet:any = [];
 				json['data']['stops'].map( (stop: any) => {
 					let routes:[string] = stop['routes'].map((route: any) => route['shortName'])
@@ -39,23 +41,24 @@ export default function NearbyStopsList(props: { longitude: number; latitude: nu
 				setStops(packet.sort((a: any, b: any) => a['distance'] - b['distance']))
 				setLoading(false)
 			})
+			.catch((error) => console.error(error))
 	}, []);
 
 	return (
 		<ThemedView>
 				{stops.slice(0,10).map((stop, i) => {
-					return <View style={styles.infoContainer}>
+					return <View key={i} style={styles.infoContainer}>
 						<View style={{display: 'flex', flexDirection: 'row', gap: 10, flexWrap: 'wrap'}}>
 							<Link href={{pathname: `/stops/[stop]`,
 								params: {stop: stop['code']}}}><ThemedText style={styles.name}>{stop['name']}</ThemedText></Link>
 							<ThemedText>{stop['distance']}mi away</ThemedText>
 						</View>
-						<View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
+						<View  style={{display: 'flex', flexDirection: 'row', gap: 10}}>
 							{/*@ts-ignore*/}
 							{stop['routes'].map((bus:string) => {
 								return <ThemedText style={styles.busCircle}>{bus}</ThemedText>
 							})}</View>
-						<ThemedText>{stop['code']}</ThemedText>
+						{/*<ThemedText>Stop Code {stop['code']}</ThemedText>*/}
 					</View>
 				})}
 		</ThemedView>

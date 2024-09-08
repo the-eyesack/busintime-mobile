@@ -40,10 +40,10 @@ export default function HomeScreen() {
       <DismissKeyboard>
       <ThemedView style={{flex:1}}>
         <ThemedText style={styles.titleContainer}>Bus in Time</ThemedText>
-          <ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
+          <ThemedText style={styles.greeting}>Good {timeofDay()}!</ThemedText>
           <ThemedText style={styles.title}>Search for Bus</ThemedText>
           <BusSearch/>
-          <ThemedText style={styles.bottomtext}>For NYC MTA buses.</ThemedText>
+          <ThemedText style={styles.bottomtext}>Find out when you NYC bus arrives.</ThemedText>
       </ThemedView>
       </DismissKeyboard>
   );
