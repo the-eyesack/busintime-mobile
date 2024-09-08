@@ -43,7 +43,7 @@ export default function HomeScreen() {
           <ThemedText style={styles.greeting}>Good {timeofDay()}!</ThemedText>
           <ThemedText style={styles.title}>Search for Bus</ThemedText>
           <BusSearch/>
-          <ThemedText style={styles.bottomtext}>Find out when you NYC bus arrives.</ThemedText>
+          <ThemedText style={styles.bottomtext}>Find out when your NYC bus arrives.</ThemedText>
       </ThemedView>
       </DismissKeyboard>
   );
