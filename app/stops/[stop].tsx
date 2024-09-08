@@ -18,6 +18,7 @@ export default function StopByRoute() {
 	const [stopName, setStopName] = useState<string>()
 	const [buses, setBuses] = useState([])
 	const [routes, setRoutes] = useState<String[]>([])
+	const [listOfRoutes, setListofRoutes] = useState<String[]>([])
 	useEffect(() => {
 		// console.log(id)
 		// fetch(`http://localhost:5000/stops/${id}`) // local dev
@@ -29,7 +30,15 @@ export default function StopByRoute() {
 				setBuses(data['buses'])
 				setLoading(false)
 			})
-			.catch(err => console.log(err))
+			// .then(()=> {
+			// 	let hold = []
+			// 	for (let i in buses) {
+			// 		if(listOfRoutes.indexOf(buses[i]['route']) === -1) {
+			// 			hold.push(buses[i]['route'])
+			// 		}
+			// 	}
+			// })
+			.catch(err => alert("An error has occurred. Please ensure the stop number was typed in correctly and try again."))
 
 	}, []);
 
@@ -48,10 +57,16 @@ export default function StopByRoute() {
 				</View>
 			))}
 			<ScrollView style={styles.flex}>
-				{loading ? <Loading/> : buses.map((bus, i) => {
+				{loading ? '' : 
+				buses.map((bus, i) => {
 					if(moment(bus['arrival_time']).format() !== 'Invalid date') return (
 						<View key={i} style={styles.group}>
-							<ThemedText style={styles.timeBox}>{bus['route']} {moment().to(bus['arrival_time'])} ({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>
+							<View style={styles.grid}>
+								<ThemedText style={{width: 70}}>{bus['route']}</ThemedText>
+								<ThemedText style={{width: 150}}>{moment().to(bus['arrival_time'])}</ThemedText>
+								<ThemedText>{moment(bus['arrival_time']).format('h:mm a')}</ThemedText>
+							{/* <ThemedText style={styles.timeBox}>{bus['route']} {moment().to(bus['arrival_time'])} ({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>								 */}
+							</View>
 						</View>
 					)})}
 			</ScrollView>
@@ -60,6 +75,11 @@ export default function StopByRoute() {
 }
 
 const styles = StyleSheet.create({
+	grid: {
+		flex: 3,
+		flexDirection: 'row',
+		gap: 10
+	},
 	group: {
 		flex: 1,
 		display: 'flex'

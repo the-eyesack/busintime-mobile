@@ -43,7 +43,11 @@ export default function StopByRoute() {
 			<ScrollView style={styles.flex}>
 				{loading ? <Loading/> : buses.map((bus, i) => {
 					if(moment(bus['arrival_time']).format() !== 'Invalid date') return (
-						<ThemedText key={i} style={styles.timeBox}>{moment().to(bus['arrival_time'])} ({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>
+						<View style={styles.timeContainer}>
+						<ThemedText key={i} id={'timeuntil'+i} style={styles.timeNumber}>{moment().to(bus['arrival_time']).replace('in ', '')}</ThemedText>
+						<ThemedText style={styles.time}>({moment(bus['arrival_time']).format('h:mm a')})</ThemedText>
+						</View>
+
 					)})}
 			</ScrollView>
 		</ThemedView>
@@ -51,6 +55,12 @@ export default function StopByRoute() {
 }
 
 const styles = StyleSheet.create({
+	timeContainer: {
+		display: 'flex',
+		marginTop: 24,
+		flexDirection: 'row',
+
+	},
 	routeName: {
 		fontSize: 48,
 		fontWeight: 'bold',
@@ -63,8 +73,16 @@ const styles = StyleSheet.create({
 	id: {
 		color: Colors.highlight
 	},
-	timeBox: {
-		textAlign: 'center',
+	timeNumber: {
+		fontSize: 32,
+		textAlignVertical: 'top',
+		paddingBottom: 6,
+		paddingLeft: 12,
+		width: 180
+	},
+	time: {
+		marginTop: 'auto',
+		paddingLeft: 6
 	},
 	flex: {
 		display: 'flex',
