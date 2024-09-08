@@ -50,14 +50,17 @@ const styles = StyleSheet.create({
 
 	},
 	link: {
+		display: 'flex',
 		flex: 1,
 		borderWidth: 2,
 		borderRadius: 4,
 		backgroundColor: Colors.pink,
+		justifyContent: 'center',
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		alignItems: 'center',
 		overflow: 'hidden'
+
 	},
 
 })

@@ -43,12 +43,19 @@ export default function HomeScreen() {
           <ThemedText style={styles.greeting}>Good {timeofDay()}, {name}!</ThemedText>
           <ThemedText style={styles.title}>Search for Bus</ThemedText>
           <BusSearch/>
+          <ThemedText style={styles.bottomtext}>For NYC MTA buses.</ThemedText>
       </ThemedView>
       </DismissKeyboard>
   );
 }
 
 const styles = StyleSheet.create({
+  bottomtext: {
+    display: 'flex',
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',

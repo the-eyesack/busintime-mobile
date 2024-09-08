@@ -36,6 +36,10 @@ export default function BusSearch() {
 }
 
 const styles = StyleSheet.create({
+	searchButton: {
+		flex: 1,
+		justifyContent: "center"
+	},
 	flex: {
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -49,10 +53,12 @@ const styles = StyleSheet.create({
 
 	},
 	link: {
+		display: 'flex',
 		flex: 1,
 		borderWidth: 2,
 		borderRadius: 4,
 		backgroundColor: Colors.pink,
+		justifyContent: 'center',
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		alignItems: 'center',
