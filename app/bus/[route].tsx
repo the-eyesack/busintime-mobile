@@ -26,7 +26,7 @@ export default function Route() {
 
 	useEffect(() => {
 		// fetch(`http://localhost:5000/${Object.values(route)}`) // local dev
-		fetch(`https://coral-app-o8edf.ondigitalocean.app/${Object.values(route)}`)
+		fetch(`https://coral-app-o8edf.ondigitalocean.app/bus/${Object.values(route)}`)
 			.then(res => res.json())
 			.then(data => {
 				// console.log(data)
